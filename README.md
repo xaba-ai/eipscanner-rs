@@ -53,8 +53,8 @@ The crate is split so the protocol code can be tested and reused without sockets
 Explicit messaging:
 
 ```rust
-use eipscanner::cip::{EPath, ServiceCode};
-use eipscanner::{MessageRouter, SessionInfo};
+use xaba_eipscanner::cip::{EPath, ServiceCode};
+use xaba_eipscanner::{MessageRouter, SessionInfo};
 
 let session = SessionInfo::connect("192.168.1.10", 44818)?;
 let reply = MessageRouter::new()
@@ -66,8 +66,8 @@ Implicit messaging:
 
 ```rust
 use std::time::Duration;
-use eipscanner::cip::connection_manager::{ConnectionConfig, ConnectionPath, Direction};
-use eipscanner::io::{ConnectionManager, IoCallbacks};
+use xaba_eipscanner::cip::connection_manager::{ConnectionConfig, ConnectionPath, Direction};
+use xaba_eipscanner::io::{ConnectionManager, IoCallbacks};
 
 let manager = ConnectionManager::new()?; // starts the IO thread, binds UDP 2222
 let rpi = Duration::from_millis(10);
@@ -123,7 +123,7 @@ see the `file_object` example). `eds::Eds` reads it and turns a connection
 entry into a `ConnectionConfig`:
 
 ```rust
-use eipscanner::eds::Eds;
+use xaba_eipscanner::eds::Eds;
 
 let eds = Eds::read("device.eds")?;
 let mut config = eds.connection(1)?.to_connection_config()?;
@@ -153,7 +153,7 @@ thread through a channel; to avoid that, write the output in place from the
 For tighter timing on Linux, pass a `RealtimeConfig` through `IoThreadConfig`:
 
 ```rust
-use eipscanner::io::{IoThreadConfig, RealtimeConfig};
+use xaba_eipscanner::io::{IoThreadConfig, RealtimeConfig};
 
 let config = IoThreadConfig {
     realtime: RealtimeConfig {
@@ -246,7 +246,7 @@ The tests share UDP port 2222, so they run one at a time.
 
 API:
 
-- Errors are returned as `eipscanner::Error` instead of thrown. A non-success
+- Errors are returned as `xaba_eipscanner::Error` instead of thrown. A non-success
   CIP status stays a normal `MessageRouterResponse`; call `.check()` to turn it
   into an error.
 - Objects and managers take the session per call (`&dyn Session`) instead of a

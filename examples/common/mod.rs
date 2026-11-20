@@ -1,7 +1,7 @@
 //! Setup shared by the examples.
 
 use clap::Args;
-use eipscanner::EIP_DEFAULT_EXPLICIT_PORT;
+use xaba_eipscanner::EIP_DEFAULT_EXPLICIT_PORT;
 
 /// Address of the device to connect to.
 #[derive(Debug, Args)]

@@ -190,7 +190,7 @@ pub const MAX_CONFIG_DATA: usize = 510;
 ///
 /// ```
 /// use std::time::Duration;
-/// use eipscanner::cip::connection_manager::{ConnectionConfig, ConnectionPath, Direction};
+/// use xaba_eipscanner::cip::connection_manager::{ConnectionConfig, ConnectionPath, Direction};
 ///
 /// let rpi = Duration::from_millis(10);
 /// let config = ConnectionConfig::new(

@@ -3,7 +3,7 @@
 use std::path::PathBuf;
 
 use clap::Parser;
-use eipscanner::eds::{Eds, EdsDirection};
+use xaba_eipscanner::eds::{Eds, EdsDirection};
 
 /// Prints the device and the I/O connections described by an EDS file.
 #[derive(Parser)]
@@ -12,7 +12,7 @@ struct Cli {
     path: PathBuf,
 }
 
-fn main() -> eipscanner::Result<()> {
+fn main() -> xaba_eipscanner::Result<()> {
     let cli = Cli::parse();
     let eds = Eds::read(&cli.path)?;
 

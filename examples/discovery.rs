@@ -6,7 +6,7 @@ use std::net::{Ipv4Addr, SocketAddrV4};
 use std::time::Duration;
 
 use clap::Parser;
-use eipscanner::{BroadcastTarget, DiscoveryManager, EIP_DEFAULT_EXPLICIT_PORT};
+use xaba_eipscanner::{BroadcastTarget, DiscoveryManager, EIP_DEFAULT_EXPLICIT_PORT};
 
 /// Broadcasts an EtherNet/IP ListIdentity request and prints each reply.
 #[derive(Parser)]
@@ -20,7 +20,7 @@ struct Cli {
     timeout_ms: u64,
 }
 
-fn main() -> eipscanner::Result<()> {
+fn main() -> xaba_eipscanner::Result<()> {
     let cli = Cli::parse();
     common::init_logging();
     let target = match cli.broadcast {

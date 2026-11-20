@@ -10,12 +10,12 @@ use std::sync::mpsc;
 use std::sync::{Mutex, MutexGuard};
 use std::time::{Duration, Instant};
 
-use eipscanner::cip::connection_manager::{ConnectionConfig, ConnectionPath, Direction};
-use eipscanner::cip::{EPath, GeneralStatusCode, ServiceCode};
-use eipscanner::eds::Eds;
-use eipscanner::io::{ConnectionManager, IoCallbacks, IoConnectionHandle};
-use eipscanner::objects::IdentityObject;
-use eipscanner::{DiscoveryManager, Error, MessageRouter, SessionInfo};
+use xaba_eipscanner::cip::connection_manager::{ConnectionConfig, ConnectionPath, Direction};
+use xaba_eipscanner::cip::{EPath, GeneralStatusCode, ServiceCode};
+use xaba_eipscanner::eds::Eds;
+use xaba_eipscanner::io::{ConnectionManager, IoCallbacks, IoConnectionHandle};
+use xaba_eipscanner::objects::IdentityObject;
+use xaba_eipscanner::{DiscoveryManager, Error, MessageRouter, SessionInfo};
 
 const ASSEMBLY: u16 = 0x04;
 const INPUT: u16 = 100;
@@ -56,7 +56,7 @@ fn open(
     manager: &ConnectionManager,
     session: &SessionInfo,
     config: &ConnectionConfig,
-) -> eipscanner::Result<(IoConnectionHandle, mpsc::Receiver<Vec<u8>>)> {
+) -> xaba_eipscanner::Result<(IoConnectionHandle, mpsc::Receiver<Vec<u8>>)> {
     let (tx, rx) = mpsc::channel();
     let callbacks = IoCallbacks::new().on_receive(move |input| {
         let _ = tx.send(input.data.to_vec());

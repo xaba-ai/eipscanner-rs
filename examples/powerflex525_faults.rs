@@ -3,8 +3,8 @@
 mod common;
 
 use clap::Parser;
-use eipscanner::vendor::ra::powerflex525::DpiFaultManager;
-use eipscanner::{MessageRouter, SessionInfo};
+use xaba_eipscanner::vendor::ra::powerflex525::DpiFaultManager;
+use xaba_eipscanner::{MessageRouter, SessionInfo};
 
 /// Reads the fault queue of a PowerFlex 525 drive.
 #[derive(Parser)]
@@ -19,7 +19,7 @@ struct Cli {
     clear: bool,
 }
 
-fn main() -> eipscanner::Result<()> {
+fn main() -> xaba_eipscanner::Result<()> {
     let cli = Cli::parse();
     common::init_logging();
     let session = SessionInfo::connect(&cli.device.host, cli.device.port)?;

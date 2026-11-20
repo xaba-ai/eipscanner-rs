@@ -29,7 +29,7 @@ pub struct ElectronicKey {
 /// Builds the connection path of a Forward Open.
 ///
 /// ```
-/// use eipscanner::cip::connection_manager::ConnectionPath;
+/// use xaba_eipscanner::cip::connection_manager::ConnectionPath;
 ///
 /// // Configuration assembly 151, output 150, input 100.
 /// let path = ConnectionPath::assembly(151, 150, 100);
@@ -91,12 +91,12 @@ impl ConnectionPath {
     /// an IPv4 address for an Ethernet port.
     ///
     /// ```
-    /// use eipscanner::cip::connection_manager::ConnectionPath;
+    /// use xaba_eipscanner::cip::connection_manager::ConnectionPath;
     ///
     /// // Backplane slot 0, then out Ethernet port 2 to 10.0.0.5, then slot 3.
     /// let route = ConnectionPath::route("1,0,2,10.0.0.5,1,3")?;
     /// assert_eq!(route.to_string(), "01 00 12 08 31 30 2E 30 2E 30 2E 35 01 03");
-    /// # Ok::<(), eipscanner::Error>(())
+    /// # Ok::<(), xaba_eipscanner::Error>(())
     /// ```
     pub fn route(spec: &str) -> Result<Self> {
         let tokens: Vec<&str> = spec

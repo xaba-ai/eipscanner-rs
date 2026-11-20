@@ -4,9 +4,9 @@
 mod common;
 
 use clap::Parser;
-use eipscanner::SessionInfo;
-use eipscanner::cip::{EPath, ServiceCode};
-use eipscanner::vendor::yaskawa::mp3300iec::{ASSEMBLY_OBJECT, message_router};
+use xaba_eipscanner::SessionInfo;
+use xaba_eipscanner::cip::{EPath, ServiceCode};
+use xaba_eipscanner::vendor::yaskawa::mp3300iec::{ASSEMBLY_OBJECT, message_router};
 
 /// Writes 0xDE to every byte of an assembly on a Yaskawa MP3300iec, then reads it back.
 #[derive(Parser)]
@@ -21,7 +21,7 @@ struct Cli {
     size: usize,
 }
 
-fn main() -> eipscanner::Result<()> {
+fn main() -> xaba_eipscanner::Result<()> {
     let cli = Cli::parse();
     common::init_logging();
     let session = SessionInfo::connect(&cli.device.host, cli.device.port)?;

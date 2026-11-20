@@ -5,8 +5,8 @@ mod common;
 use std::path::PathBuf;
 
 use clap::Parser;
-use eipscanner::objects::FileObject;
-use eipscanner::{MessageRouter, SessionInfo};
+use xaba_eipscanner::objects::FileObject;
+use xaba_eipscanner::{MessageRouter, SessionInfo};
 
 /// Uploads a file from a device's File object.
 #[derive(Parser)]
@@ -21,7 +21,7 @@ struct Cli {
     out: Option<PathBuf>,
 }
 
-fn main() -> eipscanner::Result<()> {
+fn main() -> xaba_eipscanner::Result<()> {
     let cli = Cli::parse();
     common::init_logging();
     let session = SessionInfo::connect(&cli.device.host, cli.device.port)?;
