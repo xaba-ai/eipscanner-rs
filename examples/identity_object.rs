@@ -3,8 +3,8 @@
 mod common;
 
 use clap::Parser;
-use eipscanner::objects::IdentityObject;
-use eipscanner::{MessageRouter, SessionInfo};
+use xaba_eipscanner::objects::IdentityObject;
+use xaba_eipscanner::{MessageRouter, SessionInfo};
 
 /// Reads and prints a device's Identity object.
 #[derive(Parser)]
@@ -13,7 +13,7 @@ struct Cli {
     device: common::Device,
 }
 
-fn main() -> eipscanner::Result<()> {
+fn main() -> xaba_eipscanner::Result<()> {
     let cli = Cli::parse();
     common::init_logging();
     let session = SessionInfo::connect(&cli.device.host, cli.device.port)?;

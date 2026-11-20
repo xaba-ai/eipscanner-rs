@@ -11,14 +11,14 @@
 //! sections.
 //!
 //! ```no_run
-//! use eipscanner::eds::Eds;
+//! use xaba_eipscanner::eds::Eds;
 //!
 //! let eds = Eds::read("device.eds")?;
 //! let conn = eds.connection(1)?;
 //! let mut config = conn.to_connection_config()?;
 //! config.originator_vendor_id = 342;
 //! config.originator_serial_number = 0x12345;
-//! # Ok::<(), eipscanner::Error>(())
+//! # Ok::<(), xaba_eipscanner::Error>(())
 //! ```
 
 mod parse;

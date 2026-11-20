@@ -1,5 +1,5 @@
 [package]
-name = "eipscanner"
+name = "xaba-eipscanner"
 version = "0.1.0"
 edition = "2024"
 description = "EtherNet/IP scanner: explicit messaging, implicit IO connections, and discovery"

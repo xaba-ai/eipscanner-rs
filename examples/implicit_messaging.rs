@@ -14,10 +14,10 @@ use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
 use clap::Parser;
-use eipscanner::cip::connection_manager::{ConnectionConfig, ConnectionPath, Direction};
-use eipscanner::eds::Eds;
-use eipscanner::io::{ConnectionManager, IoCallbacks, IoThreadConfig, RealtimeConfig};
-use eipscanner::{EIP_DEFAULT_EXPLICIT_PORT, MessageRouter, SessionInfo};
+use xaba_eipscanner::cip::connection_manager::{ConnectionConfig, ConnectionPath, Direction};
+use xaba_eipscanner::eds::Eds;
+use xaba_eipscanner::io::{ConnectionManager, IoCallbacks, IoThreadConfig, RealtimeConfig};
+use xaba_eipscanner::{EIP_DEFAULT_EXPLICIT_PORT, MessageRouter, SessionInfo};
 
 /// Opens a class 1 IO connection to each device, exchanges data for a while,
 /// then closes them and prints per-connection statistics.
@@ -81,7 +81,7 @@ struct Stats {
     timed_out: bool,
 }
 
-fn main() -> eipscanner::Result<()> {
+fn main() -> xaba_eipscanner::Result<()> {
     let cli = Cli::parse();
     common::init_logging();
     let run_for = Duration::from_secs(cli.seconds);
@@ -216,7 +216,7 @@ fn main() -> eipscanner::Result<()> {
 /// Keeps all current and future memory of the process in RAM. This is a
 /// process-wide decision, so it belongs to the application, not the library.
 #[cfg(target_os = "linux")]
-fn lock_memory() -> eipscanner::Result<()> {
+fn lock_memory() -> xaba_eipscanner::Result<()> {
     // SAFETY: plain syscall with constant flags.
     if unsafe { libc::mlockall(libc::MCL_CURRENT | libc::MCL_FUTURE) } != 0 {
         return Err(std::io::Error::last_os_error().into());
@@ -225,8 +225,8 @@ fn lock_memory() -> eipscanner::Result<()> {
 }
 
 #[cfg(not(target_os = "linux"))]
-fn lock_memory() -> eipscanner::Result<()> {
-    Err(eipscanner::Error::Unsupported(
+fn lock_memory() -> xaba_eipscanner::Result<()> {
+    Err(xaba_eipscanner::Error::Unsupported(
         "--lock-memory is Linux only".into(),
     ))
 }

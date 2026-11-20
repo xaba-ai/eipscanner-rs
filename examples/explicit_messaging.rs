@@ -5,8 +5,8 @@ mod common;
 
 use bytes::Buf;
 use clap::Parser;
-use eipscanner::cip::{EPath, ServiceCode};
-use eipscanner::{MessageRouter, SessionInfo};
+use xaba_eipscanner::cip::{EPath, ServiceCode};
+use xaba_eipscanner::{MessageRouter, SessionInfo};
 
 /// Reads Identity attribute 1 (vendor ID), then writes bytes 1..10 to
 /// attribute 3 of an assembly instance.
@@ -19,7 +19,7 @@ struct Cli {
     write_assembly: u16,
 }
 
-fn main() -> eipscanner::Result<()> {
+fn main() -> xaba_eipscanner::Result<()> {
     let cli = Cli::parse();
     common::init_logging();
     let session = SessionInfo::connect(&cli.device.host, cli.device.port)?;
